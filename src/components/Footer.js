@@ -3,43 +3,83 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Link from "@mui/material/Link";
 import { blue } from "@mui/material/colors";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import sizes from "./sizes";
 
 const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: "#E5E5E5",
-    height: "600px",
+    height: "650px",
+    [sizes.down("sm")]: {
+      
+    },
   },
   circle1: {
     position: "relative",
+    [sizes.down("sm")]: {
+      top: "-20px",
+      left: "-90px",
+    },
   },
   fan: {
     position: "relative",
     top: "200px",
     left: "-50px",
+    [sizes.down("md")]: {
+      top: "290px",
+      left: "-130px",
+    },
+    [sizes.down("sm")]: {
+      top: "70px",
+      left: "-100px",
+    },
   },
   kite: {
     position: "relative",
     right: "-38%",
     top: "-19%",
+    [sizes.down("md")]: {
+      right: "-78%",
+      top: "-30%",
+    },
+    [sizes.down("sm")]: {
+      right: "-60%",
+      top: "-94%",
+    },
   },
   circle2: {
     position: "relative",
     right: "-48%",
     top: "30%",
+    [sizes.down("md")]: {
+      right: "-20%",
+      top: "40%",
+    },
+    [sizes.down("sm")]: {
+      right: "-55%",
+      top: "-20%",
+    },
   },
-  //   footerContent: {
-  //     textAlign: "center",
-  //   },
+  footerContent: {
+    [sizes.down("md")]: {
+      position: "relative",
+      right: "-5%",
+      top: "-23%",
+    },
+    [sizes.down("sm")]: {
+      position: "relative",
+      right: "-5%",
+      top: "-85%",
+    },
+  },
   footerCTA: {
     fontFamily: "Inter",
     fontStyle: "normal",
@@ -48,6 +88,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 0,
     marginBottom: 0,
     textAlign: "center",
+    [sizes.down("sm")]: {
+      fontSize: "30px",
+    },
   },
   footSpan: {
     color: "#0D75FF",
@@ -58,7 +101,56 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "none",
     marginTop: "10px",
     left: "36%",
+    [sizes.down("md")]: {
+      left: "26%",
+    },
+    [sizes.down("sm")]: {
+      left: "45px",
+    },
   },
+  socials: {
+    marginRight: "30%",
+    [sizes.down("md")]: {
+      marginRight: "10%",
+     
+    },
+    [sizes.down("sm")]: {
+      marginRight: "5%",
+    },
+  },
+  footerAvatar: {
+    backgroundColor: blue[700],
+    marginRight: "10px",
+    marginLeft: "35px",
+    width: 50,
+    height: 50,
+    [sizes.down("sm")]: {
+      marginLeft: "0px",
+    },
+  },
+  absolute: {
+    textAlign: "center",
+    marginTop: "25px",
+    [sizes.down("sm")]: {
+      margin: "0",
+      padding: "2px",
+    },
+  },
+  footerToolbar: {
+    marginTop: "50px",
+    [sizes.down("sm")]: {
+      marginTop: "10px",
+      flexDirection: "column",
+     
+
+    },
+  },
+  footerInfo: {
+    [sizes.down("sm")]: {
+      position: "relative",
+      top: "-55%"
+    },
+  }
 }));
 
 const Footer = () => {
@@ -96,16 +188,10 @@ const Footer = () => {
         </Button>
       </div>
 
-      <Toolbar sx={{ marginTop: "50px" }}>
-        <Avatar
-          sx={{
-            bgcolor: blue[700],
-            marginRight: "10px",
-            marginLeft: "35px",
-            width: 50,
-            height: 50,
-          }}
-        >
+      <div className={classes.footerInfo}>
+
+      <Toolbar className={classes.footerToolbar}>
+        <Avatar className={classes.footerAvatar}>
           <img
             alt="Pet Logo"
             src={`${process.env.PUBLIC_URL + "/petlogo.png"}`}
@@ -115,33 +201,22 @@ const Footer = () => {
           Pethub
         </Typography>
 
-        <Stack direction="row" alignItems="center" spacing={2} sx={{marginRight: "30%"}}>
-          <IconButton
-            color="primary"
-            aria-label="Facebook"
-            component="span"
-          >
+        <Stack
+          direction="row"
+          alignItems="center"
+          spacing={2}
+          className={classes.socials}
+        >
+          <IconButton color="primary" aria-label="Facebook" component="span">
             <FacebookOutlinedIcon color="action" />
           </IconButton>
-          <IconButton
-            color="primary"
-            aria-label="Instagram"
-            component="span"
-          >
+          <IconButton color="primary" aria-label="Instagram" component="span">
             <InstagramIcon color="action" />
           </IconButton>
-          <IconButton
-            color="primary"
-            aria-label="Twitter"
-            component="span"
-          >
+          <IconButton color="primary" aria-label="Twitter" component="span">
             <TwitterIcon color="action" />
           </IconButton>
-          <IconButton
-            color="primary"
-            aria-label="Linkedin"
-            component="span"
-          >
+          <IconButton color="primary" aria-label="Linkedin" component="span">
             <LinkedInIcon color="action" />
           </IconButton>
         </Stack>
@@ -156,7 +231,10 @@ const Footer = () => {
         </Stack>
       </Toolbar>
 
-      <Typography sx={{textAlign: "center", marginTop: "25px"}}>Copyright © 2021 Petly. All rights reserved.</Typography>
+      <Typography className={classes.absolute}>
+        Copyright © 2021 Petly. All rights reserved.
+      </Typography>
+      </div>s
     </div>
   );
 };

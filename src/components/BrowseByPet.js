@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Stack } from "@mui/material";
+import sizes from "./sizes";
 
 const useStyles = makeStyles((theme) => ({
   btn: {
@@ -9,9 +10,19 @@ const useStyles = makeStyles((theme) => ({
     height: "85px",
     width: "85px",
     borderRadius: "8px",
+    
+    [sizes.down("sm")]: {
+      height: "50px",
+    width: "50px",
+      flexWrap: "wrap"
+    },
   },
   container: {
     marginLeft: "60px",
+    [sizes.down("sm")]: {
+      marginLeft: "10px",
+      
+    },
   },
   btnContent: {
     display: "block",
@@ -22,7 +33,10 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     fontSize: "18px",
     color: "#5F6472",
-    lineHeight: "23px"
+    lineHeight: "23px",
+    [sizes.down("sm")]: {
+      fontSize: "15px"
+    },
     
   },
   title: {

@@ -2,24 +2,38 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
-import { Paper } from "@mui/material";
-import Filter from "./filter";
+import sizes from "./sizes";
 import FilterS from "./FilterS";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
     backgroundColor: "#F3F8FF",
     position: "relative",
+    [sizes.down("md")]: {
+      height: "1000px"
+    },
+    [sizes.down("sm")]: {
+      height: "1000px"
+    },
   },
+
+  gridContainer: {
+    padding: "70px 50px",
+    [sizes.down("md")]: {
+      padding: "40px 25px"
+    },
+    [sizes.down("sm")]: {
+      padding: "30px 20px"
+    },
+  },
+
   image: {
     width: "100%",
     height: "100%",
   },
   petContainer: {
     width: "80%",
-    
-    
-
+   
   },
 
   tlCorner: {
@@ -64,7 +78,7 @@ const Hero = () => {
   const classes = useStyles();
   return (
     <div className={classes.mainContainer}>
-      <Grid container justify="center" sx={{ padding: "70px 50px" }}>
+      <Grid container justify="center" className={classes.gridContainer} >
         <Grid item md={6}>
           <h4 className={classes.intro}>find special pets</h4>
           <p className={clsx(classes.title, classes.titleStyles)}>Think you Love Pets?</p>

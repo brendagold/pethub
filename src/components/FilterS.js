@@ -1,15 +1,9 @@
 import * as React from "react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import SearchIcon from "@mui/icons-material/Search";
-import Button from "@mui/material/Button";
 import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@mui/material/TextField";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Paper, Typography } from "@mui/material";
 import Chips from "./custom/Chip";
+import sizes from "./sizes";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -23,6 +17,13 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     margin: "0",
     justifyContent: "center",
+    [sizes.down("sm")]: {
+      padding: "3px 5px",
+      width: "90%",
+      height: "auto",
+      marginTop: "10px",
+      marginRight: "20px"
+    },
   },
 
   paper: {
@@ -31,6 +32,18 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     left: "46px",
     bottom: "200px",
+    [sizes.down("sm")]: {
+      width: "100%",
+      left: 0,
+      padding: "10px 5px",
+      top: "0px",
+    },
+    [sizes.down("md")]: {
+      width: "90%",
+      left: "25px",
+      padding: "10px 5px",
+      
+    },
   },
   filterText: {
     fontSize: "18px",
@@ -54,6 +67,11 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 0,
     justifyContent: "space-between",
     alignItems: "center",
+    [sizes.down("sm")]: {
+      height: "100%",
+      borderRadius: "10px",
+      flexDirection: "column",
+    },
   },
 
   selectContainer: {
@@ -63,12 +81,31 @@ const useStyles = makeStyles((theme) => ({
     color: "#8588A3",
     display: "inline-flex",
     marginLeft: "5px",
+    
   },
   inputContainer: {
     display: "inline-flex",
+    [sizes.down("sm")]: {
+      display: "flex",
+      flexDirection: "column",
+      width: "100%",
+      marginTop: "6px"
+    },
   },
   selectSingle: {
     marginLeft: "30px",
+    [sizes.down("sm")]: {
+      marginTop: "10px",
+      marginLeft: 0,
+    },
+  },
+
+  searchBtn: {
+    fontSize: 40,
+    color: "#fff",
+    [sizes.down("sm")]: {
+      fontSize: 25
+    },
   },
 }));
 
@@ -146,7 +183,7 @@ export default function FilterS() {
             </div>
           </div>
           <button type="submit" className={classes.button}>
-            <SearchIcon sx={{ fontSize: 40, color: "#fff" }} />
+            <SearchIcon className={classes.searchBtn} />
           </button>
         </div>
         <Typography variant="h6" className={classes.filterText}>
