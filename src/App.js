@@ -12,7 +12,7 @@ function App() {
       <Nav />
       <Routes>
         <Route exact path="/" element={<Main />} />
-        <Route path="/details" element={<DetailsPage />} />
+        <Route path="/pet" element={<DetailsPage />} />
         {/* <Route path="/not-found">
           <NotFound />
         </Route>
