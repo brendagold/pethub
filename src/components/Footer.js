@@ -119,7 +119,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   footerAvatar: {
-    backgroundColor: blue[700],
+    backgroundColor: "#0D75FF !important",
     marginRight: "10px",
     marginLeft: "35px",
     width: 50,

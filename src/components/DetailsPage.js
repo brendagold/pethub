@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   animalTitle: {
@@ -35,31 +35,44 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     position: "relative",
-    left: "90%",
-    top: "-40px",
+    left: "30%",
   },
   btn: {
     borderRadius: "100px",
     backgroundColor: "#0D75FF",
     textTransform: "capitalize",
-    padding: "20px 50px"
+    padding: "20px 50px",
   },
-  
+  imgStack: {
+    // alignItems: "flex-start",
+    // justifyContent: "flex-start",
+    margin: "20px auto",
+    width: "100%",
+
+  },
+  image: {
+    width: "90%"
+  },
+  card:{ 
+    maxWidth: 700, 
+    padding: "25px",
+    margin: "100px auto"
+   }
 }));
 
 const DetailsPage = () => {
   const classes = useStyles();
   return (
     <div>
-      <Card sx={{ maxWidth: 1000, padding: "25px" }}>
+      <Card className={classes.card}>
         <CardHeader
           avatar={<Avatar aria-label="luna">L</Avatar>}
           action={
             <img
-            className={classes.icon}
-            alt="dog"
-            src={`${process.env.PUBLIC_URL + "/vector/dog.png"}`}
-          />
+              className={classes.icon}
+              alt="dog"
+              src={`${process.env.PUBLIC_URL + "/vector/dog.png"}`}
+            />
             // <IconButton aria-label="settings">
             //   <MoreVertIcon />
             // </IconButton>
@@ -74,22 +87,46 @@ const DetailsPage = () => {
           alt="animal"
           sx={{ borderRadius: "6px" }}
         />
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          className={classes.imgStack}
+          spacing={1}
+        >
+          <img
+            className={classes.image}
+            alt="dog"
+            src={`${process.env.PUBLIC_URL + "/dog2.png"}`}
+          />
+          <img
+            className={classes.image}
+            alt="dog"
+            src={`${process.env.PUBLIC_URL + "/dog1.png"}`}
+          />
+          <img
+            className={classes.image}
+            alt="dog"
+            src={`${process.env.PUBLIC_URL + "/dog2.png"}`}
+          />
+          <img
+            className={classes.image}
+            alt="dog"
+            src={`${process.env.PUBLIC_URL + "/dog1.png"}`}
+          />
+        </Stack>
+
         <CardContent>
-        <Typography className={classes.animalTitle} variant="h6">Description</Typography>
-        <Typography  variant="body2">
+          <Typography className={classes.animalTitle} variant="h6">
+            Description
+          </Typography>
+          <Typography variant="body2">
             Luna Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Voluptatum sit provident maiores dolor laudantium amet quas, modi
             aut officia similique eaque praesentium, recusandae iste
             consequuntur!
           </Typography>
-
-          
-          
         </CardContent>
 
-        <CardActions
-          sx={{ justifyContent: "space-between", marginTop: "-40px" }}
-        >
+        <CardActions sx={{ justifyContent: "space-between" }}>
           <Button variant="contained" className={classes.btn}>
             Adopt Luna
           </Button>

@@ -7,21 +7,61 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Link from '@mui/material/Link';
+import { withStyles } from "@material-ui/core/styles";
 import { blue } from "@mui/material/colors";
+import AppBarCollapse from "./AppBarCollapse";
+import sizes from "./sizes";
 
-export default function Nav() {
+const styles = {
+  root: {
+    flexGrow: 1
+  },
+  grow: {
+    flexGrow: 1
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20
+  },
+  navigation: {},
+  toggleDrawer: {},
+  appTitle: {},
+  avatar: {
+    backgroundColor: "#0D75FF !important",
+    marginRight: "10px",
+    marginLeft: "35px",
+    width: 50,
+    height: 50,
+    [sizes.down("sm")]: {
+      marginLeft: "0px",
+    },
+  },
+  midStack: {
+    marginLeft: "30%", 
+    border: "1px solid #f2f2f2", 
+    borderRadius: "8px",
+    [sizes.down("md")]: {
+      marginLeft: "10%",
+    },
+    [sizes.down("sm")]: {
+      display: "none !important",
+    },
+  },
+  linkStack: {
+    [sizes.down("sm")]: {
+      display: "none !important",
+    },
+  }
+};
+
+function Nav(props) {
+  const { classes } = props;
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" elevation={0} color="transparent">
+      <AppBar position="static" className={classes.navigation} elevation={0} color="transparent">
         <Toolbar>
           <Avatar
-            sx={{
-              bgcolor: blue[700],
-              marginRight: "10px",
-              marginLeft: "35px",
-              width: 50,
-              height: 50,
-            }}
+            className={classes.avatar}
           >
             <img
               alt="Pet Logo"
@@ -32,7 +72,9 @@ export default function Nav() {
             Pethub
           </Typography>
 
-          <Stack direction="row" alignItems="center" spacing={3}>
+          <AppBarCollapse />
+
+          <Stack direction="row" alignItems="center" spacing={3} className={classes.linkStack}>
             <Link href="#" underline="none">
               Find a pet to Adopt
             </Link>
@@ -41,7 +83,7 @@ export default function Nav() {
             </Link>
           </Stack>
 
-          <Stack direction="row" alignItems="center" sx={{marginLeft: "30%", border: "1px solid #f2f2f2", borderRadius: "8px"}} spacing={2}>
+          <Stack direction="row" alignItems="center" className={classes.midStack} spacing={2}>
             <IconButton
               color="primary"
               aria-label="upload picture"
@@ -62,3 +104,6 @@ export default function Nav() {
     </Box>
   );
 }
+
+
+export default withStyles(styles)(Nav)

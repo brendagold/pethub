@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "8px",
     
     [sizes.down("sm")]: {
-      height: "50px",
-    width: "50px",
+      height: "80px",
+    width: "100%",
       flexWrap: "wrap"
     },
   },
@@ -54,7 +54,7 @@ const BrowseByPet = () => {
   return (
     <div className={classes.container}>
       <h3 className={classes.title}>Browse Through Pet Types</h3>
-      <Stack direction="row" spacing={2}>
+      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
         <button className={classes.btn}>
           <span className={classes.btnContent}>
             <img

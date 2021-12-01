@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
       height: "1000px"
     },
     [sizes.down("sm")]: {
-      height: "1000px"
+      height: "1000px",
     },
   },
 
