@@ -234,7 +234,7 @@ const Footer = () => {
       <Typography className={classes.absolute}>
         Copyright © 2021 Petly. All rights reserved.
       </Typography>
-      </div>s
+      </div>
     </div>
   );
 };

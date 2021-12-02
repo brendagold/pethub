@@ -11,8 +11,8 @@ function App() {
     <div className="">
       <Nav />
       <Routes>
-        <Route exact path="/" element={<Main />} />
-        <Route path="/pet" element={<DetailsPage />} />
+        <Route exact path="/pethub" element={<Main />} />
+        <Route path="/pethub/pet" element={<DetailsPage />} />
         {/* <Route path="/not-found">
           <NotFound />
         </Route>
