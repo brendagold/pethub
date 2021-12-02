@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/pethub/static/css/main.fd13414f.chunk.css",
+    "main.js": "/pethub/static/js/main.f32a70c4.chunk.js",
+    "main.js.map": "/pethub/static/js/main.f32a70c4.chunk.js.map",
+    "runtime-main.js": "/pethub/static/js/runtime-main.2bd8a210.js",
+    "runtime-main.js.map": "/pethub/static/js/runtime-main.2bd8a210.js.map",
+    "static/js/2.93c4522d.chunk.js": "/pethub/static/js/2.93c4522d.chunk.js",
+    "static/js/2.93c4522d.chunk.js.map": "/pethub/static/js/2.93c4522d.chunk.js.map",
+    "static/js/3.ca4919c5.chunk.js": "/pethub/static/js/3.ca4919c5.chunk.js",
+    "static/js/3.ca4919c5.chunk.js.map": "/pethub/static/js/3.ca4919c5.chunk.js.map",
+    "index.html": "/pethub/index.html",
+    "static/css/main.fd13414f.chunk.css.map": "/pethub/static/css/main.fd13414f.chunk.css.map",
+    "static/js/2.93c4522d.chunk.js.LICENSE.txt": "/pethub/static/js/2.93c4522d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2bd8a210.js",
+    "static/js/2.93c4522d.chunk.js",
+    "static/css/main.fd13414f.chunk.css",
+    "static/js/main.f32a70c4.chunk.js"
+  ]
+}
