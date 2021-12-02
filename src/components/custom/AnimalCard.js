@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
       top: "-40px"
   },
   btn: {
-    borderRadius: "100px",
+    borderRadius: "100px !important",
     backgroundColor: "#0D75FF",
     textTransform: "capitalize"
   }
