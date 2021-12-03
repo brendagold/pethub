@@ -1,23 +1,41 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import Nav from './components/Nav';
+import { Route, Routes, Redirect } from "react-router-dom";
+import Footer from './components/Footer';
+import DetailsPage from './components/DetailsPage';
+import Main from './Main';
+import NotFound from './components/NotFound';
+import api from './services/api';
 
 function App() {
+  const [fullData, setFullData] = useState([])
+  const [exhibits, setExhibits] = useState([]);
+  const [togos, setTogos] = useState([]);
+  
+
+  const getExhibits = async () => {
+    const response = await api.get();
+    setFullData(response.pets)
+    console.log(fullData.pets)
+  };
+
+  useEffect(() => {
+    getExhibits();
+   
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+      <Nav />
+      <Routes>
+        <Route exact path="/" element={<Main />} />
+        <Route path="/pet" element={<DetailsPage />} />
+        <Route path="/not-found" element={<NotFound />} />
+          
+        {/* <Redirect to="/not-found" /> */}
+      </Routes>
+      
+      <Footer />
     </div>
   );
 }
