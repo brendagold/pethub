@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Stack } from "@mui/material";
 import sizes from "./sizes";
+import AnimalCard from "./custom/AnimalCard";
 
 const useStyles = makeStyles((theme) => ({
   btn: {
@@ -10,18 +11,17 @@ const useStyles = makeStyles((theme) => ({
     height: "85px",
     width: "85px",
     borderRadius: "8px",
-    
+
     [sizes.down("sm")]: {
       height: "80px",
-    width: "100%",
-      flexWrap: "wrap"
+      width: "100%",
+      flexWrap: "wrap",
     },
   },
   container: {
     marginLeft: "60px",
     [sizes.down("sm")]: {
       marginLeft: "10px",
-      
     },
   },
   btnContent: {
@@ -35,9 +35,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#5F6472",
     lineHeight: "23px",
     [sizes.down("sm")]: {
-      fontSize: "15px"
+      fontSize: "15px",
     },
-    
   },
   title: {
     fontFamily: "Inter",
@@ -46,15 +45,23 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "36px",
     lineHeight: "44px",
     color: "#666879",
-  }
+  },
+  animalContainer: {
+    display: "flex",
+    flexWrap: "wrap",
+    margin: "20px",
+    gap: "25px",
+  },
 }));
 
-const BrowseByPet = () => {
+const BrowseByPet = (props) => {
+  const { data } = props;
+  console.log(data);
   const classes = useStyles();
   return (
     <div className={classes.container}>
       <h3 className={classes.title}>Browse Through Pet Types</h3>
-      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+      <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
         <button className={classes.btn}>
           <span className={classes.btnContent}>
             <img
@@ -101,6 +108,19 @@ const BrowseByPet = () => {
           </span>
         </button>
       </Stack>
+      <div className={classes.animalContainer}>
+        {data.map((animal) => (
+          <AnimalCard
+            key={animal.id}
+            name={animal.name}
+            city={animal.city}
+            breed={animal.breed}
+            images={animal.images}
+            state={animal.state}
+            id={animal.id}
+          />
+        ))}
+      </div>
     </div>
   );
 };

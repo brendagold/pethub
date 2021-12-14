@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -13,7 +13,9 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Stack } from "@mui/material";
 import Popup from "./custom/Popup";
+import { useParams } from "react-router-dom";
 import Notification from "./Notification";
+
 
 const useStyles = makeStyles((theme) => ({
   animalTitle: {
@@ -79,6 +81,37 @@ const DetailsPage = () => {
     type: "",
   });
 
+  const { id } = useParams();
+  const [pet, setPet] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const fetchPetById = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `https://pets-v2.dev-apis.com/pets?id=${id}`
+      );
+      const data = await response.json();
+      setPet(data.pets);
+      setLoading(false);
+      console.log(pet);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+  //  const handleClick= () => {
+  //    fetchPetById()
+  //  }
+
+  useEffect(() => {
+    window.scroll(0, 0);
+    fetchPetById();
+  }, []);
+
+  const petIcon = (name) => {
+    if (name == "dog") {
+    }
+  };
+
   const handleClose = (value) => {
     setOpenPopup(false);
   };
@@ -89,113 +122,117 @@ const DetailsPage = () => {
       message: "Submitted Successfully",
       type: "success",
     });
-  }
+  };
 
   return (
     <div>
-      <Card className={classes.card}>
-        <CardHeader
-          avatar={<Avatar aria-label="luna">L</Avatar>}
-          action={
-            <img
-              className={classes.icon}
-              alt="dog"
-              src={`${process.env.PUBLIC_URL + "/vector/dog.png"}`}
+      {" "}
+      {pet.map((pet) => (
+        <>
+          <Card className={classes.card} key={pet.id}>
+            <CardHeader
+              avatar={<Avatar aria-label={pet.name}>{pet.name.charAt(0)}</Avatar>}
+              action={
+                <img
+                  className={classes.icon}
+                  alt="dog"
+                  src={`${process.env.PUBLIC_URL + `/vector/${pet.animal}.png`}`}
+                />
+                // <IconButton aria-label="settings">
+                //   <MoreVertIcon />
+                // </IconButton>
+              }
+              title={pet.name}
+              subheader={pet.breed}
             />
-            // <IconButton aria-label="settings">
-            //   <MoreVertIcon />
-            // </IconButton>
-          }
-          title="Luna"
-          subheader="Havenese"
-        />
-        <CardMedia
-          component="img"
-          height="400"
-          image={`${process.env.PUBLIC_URL + "/puppy.jpg"}`}
-          alt="animal"
-          sx={{ borderRadius: "6px", backgroundColor: "#fff", padding: "15px" }}
-        />
-        <Stack
-          direction={{ xs: "column", sm: "row" }}
-          className={classes.imgStack}
-          spacing={1}
-        >
-          <img
-            className={classes.image}
-            alt="dog"
-            src={`${process.env.PUBLIC_URL + "/dog2.png"}`}
-          />
-          <img
-            className={classes.image}
-            alt="dog"
-            src={`${process.env.PUBLIC_URL + "/dog1.png"}`}
-          />
-          <img
-            className={classes.image}
-            alt="dog"
-            src={`${process.env.PUBLIC_URL + "/dog2.png"}`}
-          />
-          <img
-            className={classes.image}
-            alt="dog"
-            src={`${process.env.PUBLIC_URL + "/dog1.png"}`}
-          />
-        </Stack>
-
-        <CardContent className={classes.cardContent}>
-          <Typography className={classes.animalTitle} variant="h6">
-            Description
-          </Typography>
-          <Typography variant="body2">
-            Luna Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Voluptatum sit provident maiores dolor laudantium amet quas, modi
-            aut officia similique eaque praesentium, recusandae iste
-            consequuntur!
-          </Typography>
-          <IconButton
-            aria-label="location"
-            sx={{
-              height: "45px",
-              marginTop: "25px",
-              borderRadius: "4px",
-              padding: "6px 15px",
-              paddingBottom: "15px",
-              backgroundColor: "#F0F6FF",
-              cursor: "default",
-              "&:hover": {
-                backgroundColor: "#ffffff",
-              },
-            }}
-          >
-            <Typography variant="body2">
-              <LocationOnOutlinedIcon
-                style={{ position: "relative", top: "5px" }}
+            <CardMedia
+              component="img"
+              height="400"
+              image={`${process.env.PUBLIC_URL + "/puppy.jpg"}`}
+              alt="animal"
+              sx={{
+                borderRadius: "6px",
+                backgroundColor: "#fff",
+                padding: "15px",
+              }}
+            />
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              className={classes.imgStack}
+              spacing={1}
+            >
+              <img
+                className={classes.image}
+                alt="dog"
+                src={`${process.env.PUBLIC_URL + "/dog2.png"}`}
               />
-              Seattle, WA
-            </Typography>
-          </IconButton>
-        </CardContent>
+              <img
+                className={classes.image}
+                alt="dog"
+                src={`${process.env.PUBLIC_URL + "/dog1.png"}`}
+              />
+              <img
+                className={classes.image}
+                alt="dog"
+                src={`${process.env.PUBLIC_URL + "/dog2.png"}`}
+              />
+              <img
+                className={classes.image}
+                alt="dog"
+                src={`${process.env.PUBLIC_URL + "/dog1.png"}`}
+              />
+            </Stack>
 
-        <CardActions sx={{ justifyContent: "space-between" }}>
-          <Button
-            variant="contained"
-            className={classes.btn}
-            onClick={() => {
-              setOpenPopup(true);
-              
-            }}
-          >
-            Adopt Luna
-          </Button>
-        </CardActions>
-      </Card>
-      <Popup
-        openPopup={openPopup}
-        onClose={handleClose}
-        setOpenPopup={setOpenPopup}
-        notifyInfo={handleNotify}
-      />
+            <CardContent className={classes.cardContent}>
+              <Typography className={classes.animalTitle} variant="h6">
+                Description
+              </Typography>
+              <Typography variant="body2">{pet.description}</Typography>
+              <IconButton
+                aria-label="location"
+                sx={{
+                  height: "45px",
+                  marginTop: "25px",
+                  borderRadius: "4px",
+                  padding: "6px 15px",
+                  paddingBottom: "15px",
+                  backgroundColor: "#F0F6FF",
+                  cursor: "default",
+                  "&:hover": {
+                    backgroundColor: "#ffffff",
+                  },
+                }}
+              >
+                <Typography variant="body2">
+                  <LocationOnOutlinedIcon
+                    style={{ position: "relative", top: "5px" }}
+                  />
+                  {pet.city}, {pet.state}
+                </Typography>
+              </IconButton>
+            </CardContent>
+
+            <CardActions sx={{ justifyContent: "space-between" }}>
+              <Button
+                variant="contained"
+                className={classes.btn}
+                onClick={() => {
+                  setOpenPopup(true);
+                }}
+              >
+                Adopt {pet.name}
+              </Button>
+            </CardActions>
+          </Card>
+          <Popup
+            openPopup={openPopup}
+            name={pet.name}
+            onClose={handleClose}
+            setOpenPopup={setOpenPopup}
+            notifyInfo={handleNotify}
+          />
+        </>
+      ))}
       <Notification notify={notify} setNotify={setNotify} />
     </div>
   );

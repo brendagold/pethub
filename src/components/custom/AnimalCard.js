@@ -47,8 +47,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const AnimalCard = () => {
+const AnimalCard = (props) => {
   const classes = useStyles();
+  const {name, id, breed, city, state, images, description} = props
   return (
     <Card sx={{ maxWidth: 400, padding: "25px" }}>
       <CardMedia
@@ -60,7 +61,7 @@ const AnimalCard = () => {
       />
       <CardContent>
         <Typography className={classes.animalTitle} variant="h6">
-          Luna
+          {name}
         </Typography>
 
         <Typography
@@ -68,13 +69,13 @@ const AnimalCard = () => {
           variant="body2"
           color="text.secondary"
         >
-          Havenese
+          {breed}
         </Typography>
         <img className={classes.icon} alt="dog" src={`${process.env.PUBLIC_URL + "/vector/dog.png"}`} />
       </CardContent>
 
       <CardActions sx={{justifyContent: "space-between", marginTop: "-40px"}}>
-        <Button variant="contained" className={classes.btn} >
+        <Button href={`/pet/${id}`} variant="contained" className={classes.btn} >
           View Details
         </Button>
         <IconButton aria-label="location" sx={{cursor: "default",  "&:hover": {
@@ -84,7 +85,7 @@ const AnimalCard = () => {
             <LocationOnOutlinedIcon
               style={{ position: "relative", top: "5px" }}
             />
-            Seattle, WA
+            {city}, {state}
           </Typography>
         </IconButton>
       </CardActions>

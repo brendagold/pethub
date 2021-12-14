@@ -68,8 +68,8 @@ function Nav(props) {
               src={`${process.env.PUBLIC_URL + "/petlogo.png"}`}
             />
           </Avatar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Pethub
+          <Typography variant="h6" component="div"  sx={{ flexGrow: 1, }}>
+           <Link href="/" sx={{textDecoration: "none", color: "black"}}>Pethub</Link> 
           </Typography>
 
           <AppBarCollapse />
