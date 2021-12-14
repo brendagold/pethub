@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AnimalCard = (props) => {
   const classes = useStyles();
-  const {name, id, breed, city, state, images, description} = props
+  const {name, id, breed, city, state, animal, images, description} = props
   return (
     <Card sx={{ maxWidth: 400, padding: "25px" }}>
       <CardMedia
@@ -71,7 +71,7 @@ const AnimalCard = (props) => {
         >
           {breed}
         </Typography>
-        <img className={classes.icon} alt="dog" src={`${process.env.PUBLIC_URL + "/vector/dog.png"}`} />
+        <img className={classes.icon} alt="dog" src={`${process.env.PUBLIC_URL + `/vector/${animal}.png`}`} />
       </CardContent>
 
       <CardActions sx={{justifyContent: "space-between", marginTop: "-40px"}}>

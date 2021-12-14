@@ -1,6 +1,5 @@
 import React from "react";
 import Hero from "./components/Hero";
-import AnimalCard from "./components/custom/AnimalCard";
 import BrowseByPet from "./components/BrowseByPet";
 
 const Main = (props) => {
@@ -10,9 +9,8 @@ const Main = (props) => {
     
     <>
       <Hero />
-      
       <BrowseByPet data={data} />
-      <AnimalCard />
+      
     </>
   );
 };
