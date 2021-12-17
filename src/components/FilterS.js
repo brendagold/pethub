@@ -101,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   searchBtn: {
-    fontSize: 40,
+    fontSize: 50,
     color: "#fff",
     [sizes.down("sm")]: {
       fontSize: 25
@@ -109,21 +109,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const locations = ["Lagos", "Calabar", "Abuja", "Rivers", "Enugu"];
-const animals = ["Dog", "Cat", "Rabbit", "bird"];
+const locations = ["Seattle, WA", "San Francisco, CA", "Minneapolis, MN", "Denver, CO", "Carol Stream, IL", "Bridgeport, CT",  "Charlotte, NC", "Springfield, IL", "Tucson, AZ"];
+const animals = ["Dog", "Cat", "Rabbit", "Bird", "Reptile"];
 
 export default function FilterS() {
   const classes = useStyles();
-  const [animal, setAnimal] = React.useState("");
-  const [location, setLocation] = React.useState("");
-  const [breed, setBreed] = React.useState("");
+  const [selectedAnimal, setSelectedAnimal] = React.useState("");
+  const [selectedLocation, setSelectedLocation] = React.useState("");
+  //const [breed, setBreed] = React.useState("");
 
   const handleChange = (event) => {
-    setBreed(event.target.value);
+    setSelectedAnimal(event.target.value);
   };
 
   const handleChangeLocation = (event) => {
-    setLocation(event.target.value);
+    setSelectedLocation(event.target.value);
   };
 
   return (
@@ -141,6 +141,7 @@ export default function FilterS() {
                 onChange={handleChangeLocation}
                 name="location"
                 id="location"
+                value={selectedLocation}
               >
                 <option>All Locations</option>
                 {locations.map((location) => (
@@ -159,6 +160,8 @@ export default function FilterS() {
                 className={classes.selectContainer}
                 name="animal"
                 id="animal"
+                value={selectedAnimal}
+                onChange={handleChange}
               >
                 <option>All animals</option>
                 {animals.map((animal) => (

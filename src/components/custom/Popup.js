@@ -78,7 +78,7 @@ export default function Popup(props) {
         </Typography>
       </DialogTitle>
       <DialogContent>
-        <Stack spacing={2} direction={{ xs: "column", sm: "row" }}>
+        <Stack spacing={2} sx={{justifyContent: "center"}} direction={{ xs: "column", sm: "row" }}>
           <Button
           onClick={() => {
             setOpenPopup(false);

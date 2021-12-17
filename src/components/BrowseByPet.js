@@ -82,8 +82,6 @@ const BrowseByPet = (props) => {
     [animal]
   );
   //const { data } = props;
-  console.log(pets);
-  console.log(animal)
   const classes = useStyles();
   return (
     <div className={classes.container}>

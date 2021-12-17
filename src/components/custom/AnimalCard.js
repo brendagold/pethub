@@ -51,7 +51,7 @@ const AnimalCard = (props) => {
   const classes = useStyles();
   const {name, id, breed, city, state, animal, images, description} = props
   return (
-    <Card sx={{ maxWidth: 400, padding: "25px" }}>
+    <Card sx={{ maxWidth: 400, width: "350px", padding: "25px" }}>
       <CardMedia
         component="img"
         height="194"

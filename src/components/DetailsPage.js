@@ -93,7 +93,7 @@ const DetailsPage = () => {
       const data = await response.json();
       setPet(data.pets);
       setLoading(false);
-      console.log(pet);
+      
     } catch (error) {
       console.error(error.message);
     }

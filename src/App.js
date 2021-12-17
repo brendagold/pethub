@@ -22,7 +22,6 @@ function App() {
       const response = await fetch(`https://pets-v2.dev-apis.com/pets`)
       const data = await response.json()
     setFullData(data.pets);
-    console.log(data)
     setLoading(false)
    
     } catch (error) {
