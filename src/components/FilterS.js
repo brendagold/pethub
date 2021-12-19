@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from 'react';
 import SearchIcon from "@mui/icons-material/Search";
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Typography } from "@mui/material";
@@ -114,9 +114,11 @@ const animals = ["Dog", "Cat", "Rabbit", "Bird", "Reptile"];
 
 export default function FilterS() {
   const classes = useStyles();
-  const [selectedAnimal, setSelectedAnimal] = React.useState("");
-  const [selectedLocation, setSelectedLocation] = React.useState("");
-  //const [breed, setBreed] = React.useState("");
+  const [pets, setPets] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [selectedAnimal, setSelectedAnimal] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
+  //const [breed, setBreed] = useState("");
 
   const handleChange = (event) => {
     setSelectedAnimal(event.target.value);
@@ -126,6 +128,35 @@ export default function FilterS() {
     setSelectedLocation(event.target.value);
   };
 
+  const FetchPets = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `https://pets-v2.dev-apis.com/pets?animal=${selectedAnimal}&location=${selectedLocation}`
+      );
+      const data = await response.json();
+      setPets(data.pets);
+      setLoading(false);
+      console.log(pets)
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const handleClick = () => {
+    
+    FetchPets()
+  }
+  // useEffect(
+  //   () => {
+  //     window.scroll(0, 0);
+  //     FetchPets();
+  //   },
+  //   // eslint-disable-next-line
+  //   []
+  // );
+  //const { data } = props;
+  
   return (
     <div className={classes.container}>
       <Paper elevation={1} className={classes.paper}>
@@ -185,7 +216,7 @@ export default function FilterS() {
               </select>
             </div>
           </div>
-          <button type="submit" className={classes.button}>
+          <button type="submit" onClick={handleClick } className={classes.button}>
             <SearchIcon className={classes.searchBtn} />
           </button>
         </div>
