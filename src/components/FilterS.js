@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from 'react';
 import SearchIcon from "@mui/icons-material/Search";
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Typography } from "@mui/material";
@@ -101,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   searchBtn: {
-    fontSize: 40,
+    fontSize: 50,
     color: "#fff",
     [sizes.down("sm")]: {
       fontSize: 25
@@ -109,23 +109,54 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const locations = ["Lagos", "Calabar", "Abuja", "Rivers", "Enugu"];
-const animals = ["Dog", "Cat", "Rabbit", "bird"];
+const locations = ["Seattle, WA", "San Francisco, CA", "Minneapolis, MN", "Denver, CO", "Carol Stream, IL", "Bridgeport, CT",  "Charlotte, NC", "Springfield, IL", "Tucson, AZ"];
+const animals = ["Dog", "Cat", "Rabbit", "Bird", "Reptile"];
 
 export default function FilterS() {
   const classes = useStyles();
-  const [animal, setAnimal] = React.useState("");
-  const [location, setLocation] = React.useState("");
-  const [breed, setBreed] = React.useState("");
+  const [pets, setPets] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [selectedAnimal, setSelectedAnimal] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
+  //const [breed, setBreed] = useState("");
 
   const handleChange = (event) => {
-    setBreed(event.target.value);
+    setSelectedAnimal(event.target.value);
   };
 
   const handleChangeLocation = (event) => {
-    setLocation(event.target.value);
+    setSelectedLocation(event.target.value);
   };
 
+  const FetchPets = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `https://pets-v2.dev-apis.com/pets?animal=${selectedAnimal}&location=${selectedLocation}`
+      );
+      const data = await response.json();
+      setPets(data.pets);
+      setLoading(false);
+      console.log(pets)
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const handleClick = () => {
+    
+    FetchPets()
+  }
+  // useEffect(
+  //   () => {
+  //     window.scroll(0, 0);
+  //     FetchPets();
+  //   },
+  //   // eslint-disable-next-line
+  //   []
+  // );
+  //const { data } = props;
+  
   return (
     <div className={classes.container}>
       <Paper elevation={1} className={classes.paper}>
@@ -141,6 +172,7 @@ export default function FilterS() {
                 onChange={handleChangeLocation}
                 name="location"
                 id="location"
+                value={selectedLocation}
               >
                 <option>All Locations</option>
                 {locations.map((location) => (
@@ -159,6 +191,8 @@ export default function FilterS() {
                 className={classes.selectContainer}
                 name="animal"
                 id="animal"
+                value={selectedAnimal}
+                onChange={handleChange}
               >
                 <option>All animals</option>
                 {animals.map((animal) => (
@@ -182,7 +216,7 @@ export default function FilterS() {
               </select>
             </div>
           </div>
-          <button type="submit" className={classes.button}>
+          <button type="submit" onClick={handleClick } className={classes.button}>
             <SearchIcon className={classes.searchBtn} />
           </button>
         </div>

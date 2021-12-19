@@ -67,9 +67,7 @@ export default function Chips() {
       {chipData.map((data) => {
         let icon;
 
-        if (data.label === "React") {
-          icon = <TagFacesIcon />;
-        }
+       
 
         return (
           <ListItem key={data.key}>

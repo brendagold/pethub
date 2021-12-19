@@ -1,14 +1,16 @@
 import React from "react";
 import Hero from "./components/Hero";
-import AnimalCard from "./components/custom/AnimalCard";
 import BrowseByPet from "./components/BrowseByPet";
 
-const Main = () => {
+const Main = (props) => {
+  const {data} = props
+  
   return (
+    
     <>
       <Hero />
-      <BrowseByPet />
-      <AnimalCard />
+      <BrowseByPet data={data} />
+      
     </>
   );
 };

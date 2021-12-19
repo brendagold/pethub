@@ -7,7 +7,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Link from "@mui/material/Link";
-import { blue } from "@mui/material/colors";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import TwitterIcon from "@mui/icons-material/Twitter";

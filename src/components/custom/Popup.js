@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "40px",
     position: "absolute",
     top: theme.spacing(5),
-    width: "400px",
+    width: "500px",
     height: "250px",
     [sizes.down("sm")]: {
         height: "300px"
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Popup(props) {
-  const { notifyInfo, onClose, children, openPopup, setOpenPopup } = props;
+  const { name, notifyInfo, onClose, children, openPopup, setOpenPopup } = props;
   const classes = useStyles();
 
   return (
@@ -74,11 +74,11 @@ export default function Popup(props) {
         </div> */}
         <Typography variant="h6" component="div" className={classes.title}>
           Are you sure you want to adopt{" "}
-          <span className={classes.span}>Luna</span>?
+          <span className={classes.span}>{name}</span>?
         </Typography>
       </DialogTitle>
       <DialogContent>
-        <Stack spacing={2} direction={{ xs: "column", sm: "row" }}>
+        <Stack spacing={2} sx={{justifyContent: "center"}} direction={{ xs: "column", sm: "row" }}>
           <Button
           onClick={() => {
             setOpenPopup(false);
@@ -93,7 +93,7 @@ export default function Popup(props) {
               },
             }}
           >
-            Adopt Luna
+            Adopt {name}
           </Button>
           <Button
           onClick={() => {
